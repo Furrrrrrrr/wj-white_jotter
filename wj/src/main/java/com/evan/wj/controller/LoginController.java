@@ -28,18 +28,12 @@ public class LoginController {
         // 对 html 标签进行转义，防止 XSS 攻击
         username = HtmlUtils.htmlEscape(username);
 
-        /*if (!Objects.equals("admin", username) || !Objects.equals("123456", requestUser.getPassword())) {
-            System.err.println("验证不成功，无法登录");
-            return new Result(400);
-        } else {
-            System.err.println("验证成功，登录");
-            return new Result(200);
-        }*/
-
         User user = userService.get(username, requestUser.getPassword());
         if (Objects.isNull(user)) {
+            System.err.println("用户名密码错误，无法登陆");
             return new Result(400);
         } else {
+            System.err.println("用户名密码正确，登陆成功");
             return new Result(200);
         }
 
