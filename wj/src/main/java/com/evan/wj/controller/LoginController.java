@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 @Controller
@@ -23,7 +24,7 @@ public class LoginController {
     @CrossOrigin
     @RequestMapping(value = "api/login")
     @ResponseBody
-    public Result login(@RequestBody User requestUser) {
+    public Result login(@RequestBody User requestUser, HttpSession session) {
         String username = requestUser.getUsername();
         // 对 html 标签进行转义，防止 XSS 攻击
         username = HtmlUtils.htmlEscape(username);
@@ -34,6 +35,7 @@ public class LoginController {
             return new Result(400);
         } else {
             System.err.println("用户名密码正确，登陆成功");
+            session.setAttribute("user", user);
             return new Result(200);
         }
 
