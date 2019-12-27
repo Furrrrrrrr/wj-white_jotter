@@ -8,6 +8,8 @@ import Login from '@/components/Login'
 Vue.use(Router)
 
 export default new Router({
+  // 除了history模式外，还有默认的hash模式
+  mode: 'history',
   routes: [
     {
       path: '/',
