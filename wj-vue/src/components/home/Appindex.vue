@@ -5,9 +5,9 @@
 </template>
 
 <script>
-    export default {
-        name: "Appindex"
-    }
+export default {
+  name: 'Appindex'
+}
 </script>
 
 <style scoped>
